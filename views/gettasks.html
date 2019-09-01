@@ -1,0 +1,53 @@
+<html>
+<head>
+    <head>
+        <style>
+            table, th, td {
+            border: 1px solid black;
+            }
+        </style>
+    </head>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+
+
+<body>
+    <link rel = "stylesheet" href = "css/styles.css">
+    <img src = "Monash_Header.jpg" />
+    
+    <h1> List Tasks</h1> </br>
+    <h1>
+        <a href="/">Insert New Task</a>
+        <a href="/gettasks">Get All Tasks </a>
+        <a href="/deletetask">Delete Task</a>
+        <a href="/deletecomplete">Delete All Completed Tasks</a>
+        <a href="/updatetask">UpdateTask</a>
+    </h1>
+
+    <table style = "width: 90%">
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Assigned To</td>
+                <td>Due Date</td>
+                <td>Status</td>
+                <td>Description</td>
+
+            </tr>
+            
+            <% for (let i=0;i<tasksDb.length;i++){ %>
+                <tr>
+                    <td><%= tasksDb[i]._id %> </td>
+                    <td><%= tasksDb[i].name %> </td>
+                    <td> <%= tasksDb[i].assigned %> </td>
+                    <td><%= tasksDb[i].due %></td>
+                    <td><%= tasksDb[i].status %></td>
+                    <td><%= tasksDb[i].description %></td>
+                </tr>
+                <%}%>
+    </table>
+
+
+</body>
+</html>

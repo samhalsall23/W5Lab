@@ -1,0 +1,30 @@
+<html>
+
+
+
+<body>
+    <link rel = "stylesheet" href = "css/styles.css">
+    <img src = "Monash_Header.jpg" />
+    
+    <h1> Update Task Status</h1> </br>
+    <h1>
+        <a href="/">Insert New Task</a>
+        <a href="/gettasks">Get All Tasks </a>
+        <a href="/deletetask">Delete Task</a>
+        <a href="/deletecomplete">Delete All Completed Tasks</a>
+        <a href="/updatetask">UpdateTask</a>
+    </h1>
+    <form action="/updatetaskdata" method="POST">
+        Task ID <input type="text" method="POST" name="tid" /> </br>
+        Task Status 
+        <select method="POST" name="tstatus">
+            <option value="P">In Progress</option>
+            <option value="C">Complete</option>
+        </select>
+        <input type="submit" value="Submit" /> </br>
+
+    </form>
+
+
+</body>
+</html>
