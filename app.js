@@ -1,5 +1,6 @@
 // 1 - get a reference to Mongodb module
 let mongodb = require ('mongodb');
+let morgan = require ('morgan');
 
 // 2 - from ref, get the client
 let mongoDBClient = mongodb.MongoClient;
@@ -35,9 +36,10 @@ app.get('/',function(req,res){
 //POST INSERT
 app.post('/addnewtask', function (req, res) {
     let taskDetails = req.body;
-    console.log(req.body);
     
-    db.collection('tasks').insertOne({ 
+    
+    db.collection('tasks').insertOne({
+        id: ""+Math.floor(100000 + Math.random() * 900000), 
         name:taskDetails.tname, 
         assigned:taskDetails.tassign, 
         due:taskDetails.tdate,  
@@ -63,7 +65,8 @@ app.get('/deletetask', function (req, res) {
 // POST DELETE TASK
 app.post('/deletetaskdata', function (req, res) {
     let taskDetails = req.body;
-    let filter = { _id: taskDetails.tid };
+    let filter = { id: taskDetails.tid };
+    //console.log(filter);
     db.collection('tasks').deleteOne(filter);
     res.redirect('/gettasks');// redirect the client to list users page
 });
@@ -89,7 +92,7 @@ app.get('/updatetask', function (req, res) {
 // POST UPDATE DATA
 app.post('/updatetaskdata', function (req, res) {
     let taskDetails = req.body;
-    let filter = { name: taskDetails.tid };
+    let filter = { id: taskDetails.tid };
     let theUpdate = { $set: { status:taskDetails.tstatus} };
     db.collection('tasks').updateOne(filter, theUpdate);
     res.redirect('/gettasks');// redirect the client to list users page

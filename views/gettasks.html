@@ -19,12 +19,15 @@
     <h1> List Tasks</h1> </br>
     <h1>
         <a href="/">Insert New Task</a>
-        <a href="/gettasks">Get All Tasks </a>
+        <a href="/gettasks">Get All Tasks</a>
         <a href="/deletetask">Delete Task</a>
         <a href="/deletecomplete">Delete All Completed Tasks</a>
         <a href="/updatetask">UpdateTask</a>
     </h1>
 
+    <b1>
+        Note: For Status,  C= Completed & P= In Progress
+    </b1>
     <table style = "width: 90%">
             <tr>
                 <td>ID</td>
@@ -38,7 +41,8 @@
             
             <% for (let i=0;i<tasksDb.length;i++){ %>
                 <tr>
-                    <td><%= tasksDb[i]._id %> </td>
+                    <td><%= tasksDb[i].id %> </td>
+                    <!-- <td><%= tasksDb[i]._id %> </td> -->
                     <td><%= tasksDb[i].name %> </td>
                     <td> <%= tasksDb[i].assigned %> </td>
                     <td><%= tasksDb[i].due %></td>
