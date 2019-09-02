@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(__dirname+"/views"));
 app.use(express.static(__dirname+"/img"));
 
-let db=null;
+let db={};
 let col=null;
 let url = "mongodb://localhost:27017";
 mongoDBClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, client){
