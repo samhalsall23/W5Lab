@@ -80,7 +80,7 @@ app.get('/deletecomplete', function (req, res) {
 app.post('/deletecompletedata', function (req, res) {
     let taskDetails = req.body;
     let filter = { status: "C" };
-    db.collection('tasks').deleteOne(filter);
+    db.collection('tasks').deleteMany(filter);
     res.redirect('/gettasks');// redirect the client to list users page
 });
 
