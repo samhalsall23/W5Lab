@@ -42,7 +42,7 @@ app.post('/addnewtask', function (req, res) {
         id: ""+Math.floor(100000 + Math.random() * 900000), 
         name:taskDetails.tname, 
         assigned:taskDetails.tassign, 
-        due:taskDetails.tdate,  
+        due:new Date(taskDetails.tdate),  
         status:taskDetails.tstatus,
         description:taskDetails.tdesc
     });
@@ -94,8 +94,8 @@ app.post('/deleteoldcompletedata', function (req, res) {
     console.log(Date());
     
     let taskDetails = req.body;
-    // let filter = { $and [{due: { $lte: Date}]};
-    db.collection('tasks').deleteMany( { $and: [ { due: { $lte: Date() } }, {status: "C"} ] } );
+    let filter = { $and: [ { due: { $lt: new Date() } }, {status: "C"} ] } 
+    db.collection('tasks').deleteMany( filter );
     res.redirect('/gettasks');// redirect the client to list users page
     // status: "C" ,
 });
