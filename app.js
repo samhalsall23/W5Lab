@@ -76,12 +76,28 @@ app.get('/deletecomplete', function (req, res) {
     res.sendFile(__dirname + '/views/deletecomplete.html');
 });
 
-// POST DELETE TASK
+// POST DELETE COMPLETED TASK
 app.post('/deletecompletedata', function (req, res) {
     let taskDetails = req.body;
     let filter = { status: "C" };
     db.collection('tasks').deleteMany(filter);
     res.redirect('/gettasks');// redirect the client to list users page
+});
+
+// GET DELETE OLD COMPLETED TASK
+app.get('/deleteOldComplete', function (req, res) {
+    res.sendFile(__dirname + '/views/deleteoldcomplete.html');
+});
+
+// POST DELETE OLD COMPLETED TASK
+app.post('/deleteoldcompletedata', function (req, res) {
+    console.log(Date());
+    
+    let taskDetails = req.body;
+    // let filter = { $and [{due: { $lte: Date}]};
+    db.collection('tasks').deleteMany( { $and: [ { due: { $lte: Date() } }, {status: "C"} ] } );
+    res.redirect('/gettasks');// redirect the client to list users page
+    // status: "C" ,
 });
 
 // GET UPDATE TASK
